@@ -5,3 +5,12 @@
 #goBtn {
     margin-top: 5px;
 }
+
+.bi-stopwatch {
+    font-size: 3em;
+}
+
+.countdownDiv {
+    font-weight: bolder;
+    font-size: 64px;
+}
