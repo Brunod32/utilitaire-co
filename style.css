@@ -7,10 +7,22 @@
 }
 
 .bi-stopwatch {
-    font-size: 3em;
+    font-size: 2em;
 }
 
 .countdownDiv {
     font-weight: bolder;
     font-size: 64px;
+}
+
+.cool {
+    color: green;
+}
+
+.warning {
+    color: orange;
+}
+
+.danger {
+    color: red;
 }
