@@ -18,7 +18,7 @@ function showDate() {
     });
 
     setTimeout('showDate()', 100);
-    dateInHtml.innerText = `Nous sommes le ${localeDate[0].toUpperCase()}${localeDate.slice(1).replace("à", ", il est ")}.`;
+    dateInHtml.innerText = `Nous sommes le ${localeDate[0].toUpperCase()}${localeDate.slice(1).replace("à", "et il est ")}.`;
 }
 
 // ------------  Compte à rebours
@@ -118,10 +118,11 @@ function tick() {
 
 function add() {
     tick();
+    chronoContainer.classList.add("text-center");
     chronoContainer.textContent = (hours > 9 ? hours : "0" + hours) 
         + ":" + (minutes > 9 ? minutes : "0" + minutes)
         + ":" + (seconds > 9 ? seconds : "0" + seconds)
-        + "." + (milliseconds > 9 ? milliseconds : "0" + milliseconds);
+        + "." + (milliseconds > 9 ? milliseconds : "" + milliseconds);
     timer();
 }
 
@@ -132,6 +133,7 @@ function timer() {
 startbtn.addEventListener("click", () => {
     startChrono();
     startbtn.style.visibility = "hidden";
+
 })
 stopbtn.addEventListener("click", () => {
     stopChrono();
@@ -150,7 +152,7 @@ function stopChrono() {
 }
 
 function resetChrono() {
-    chronoContainer.textContent = "00:00:00.00";
+    chronoContainer.textContent = "00:00:00.0";
     seconds = 0;
     minutes = 0;
     hours = 0;

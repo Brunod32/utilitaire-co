@@ -2,6 +2,13 @@ body {
     background-color: bisque;
 }
 
+h2 {
+    border-radius: 10px;
+    color: white;
+    background-color: rgb(145, 145, 255);
+    padding: 6px;
+}
+
 #date {
     font-weight: lighter;
     font-size: 25px;
@@ -24,7 +31,7 @@ body {
 .tempusDiv,
 #chronoContainer {
     font-weight: bolder;
-    font-size: 64px;
+    font-size: 50px;
 }
 
 #countdownParams {
@@ -34,17 +41,27 @@ body {
     margin-bottom: 10px;
 }
 
+label {
+    font-weight: lighter;
+    font-size: 20px;
+}
+
 .countdownBtn {
     display: flex;
     justify-content: space-around;
 }
 
 .tempusSectionBoxes {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     padding: 1.5rem;
     border-radius: 15px;
     height: 400px;
     background-color: whitesmoke;
+}
+
+#numberParam {
+    border-radius: 10px;
+    border: 1px solid blue;
 }
 
 .cool {
@@ -63,22 +80,40 @@ body {
     font-size: 5em;
     color: rgb(9, 186, 246);
     cursor: pointer;
+    padding: 15px;
 }
 
 .bi-stopwatch.stop {
     font-size: 5em;
     color: rgb(255, 0, 4);
     cursor: pointer;
+    padding: 15px;
 }
 
 .bi-stopwatch.reset {
     font-size: 5em;
     color: rgb(246, 155, 9);
     cursor: pointer;
+    padding: 15px;
 }
 
 .btnChrono {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
 }
 
+.btnChrono i:hover {
+    /* background-color: lightgray; */
+    border-radius: 25px;
+    box-shadow: 2px 5px 5px lightblue;
+}
+
+@media (max-width: 748px) {
+    .tempusSection {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+}
