@@ -2,11 +2,15 @@
     margin-top: 25px;
 }
 
-#goBtn {
+#goBtn,
+#muteBtn,
+#unmuteBtn {
     margin-top: 5px;
 }
 
-.bi-stopwatch {
+.bi-stopwatch,
+.bi-volume-mute,
+.bi-volume-down {
     font-size: 2em;
 }
 
@@ -25,4 +29,9 @@
 
 .danger {
     color: red;
+}
+
+#date {
+    font-weight: lighter;
+    font-size: 25px;
 }
