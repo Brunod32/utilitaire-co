@@ -1,22 +1,50 @@
-.countdownContainer {
-    margin-top: 25px;
+body {
+    background-color: bisque;
 }
 
-#goBtn,
+#date {
+    font-weight: lighter;
+    font-size: 25px;
+}
+
+#hourglassBtn,
 #muteBtn,
 #unmuteBtn {
     margin-top: 5px;
-}
-
-.bi-stopwatch,
-.bi-volume-mute,
-.bi-volume-down {
     font-size: 2em;
 }
 
-.countdownDiv {
+.tempusSection {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5px;
+}
+
+.tempusDiv,
+#chronoContainer {
     font-weight: bolder;
     font-size: 64px;
+}
+
+#countdownParams {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.countdownBtn {
+    display: flex;
+    justify-content: space-around;
+}
+
+.tempusSectionBoxes {
+    border: 1px solid black;
+    padding: 1.5rem;
+    border-radius: 15px;
+    height: 400px;
+    background-color: whitesmoke;
 }
 
 .cool {
@@ -31,7 +59,26 @@
     color: red;
 }
 
-#date {
-    font-weight: lighter;
-    font-size: 25px;
+.bi-stopwatch.start {
+    font-size: 5em;
+    color: rgb(9, 186, 246);
+    cursor: pointer;
 }
+
+.bi-stopwatch.stop {
+    font-size: 5em;
+    color: rgb(255, 0, 4);
+    cursor: pointer;
+}
+
+.bi-stopwatch.reset {
+    font-size: 5em;
+    color: rgb(246, 155, 9);
+    cursor: pointer;
+}
+
+.btnChrono {
+    display: flex;
+    justify-content: center;
+}
+

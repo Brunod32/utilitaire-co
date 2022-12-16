@@ -1,4 +1,4 @@
-// Date
+// -----------  Date
 let today = new Date();
 let dateInHtml = document.getElementById('date');
 
@@ -18,13 +18,13 @@ function showDate() {
     });
 
     setTimeout('showDate()', 100);
-    dateInHtml.innerText = `Nous sommes le ${localeDate[0].toUpperCase()}${localeDate.slice(1)}.`;
+    dateInHtml.innerText = `Nous sommes le ${localeDate[0].toUpperCase()}${localeDate.slice(1).replace("à", ", il est ")}.`;
 }
 
-// Compte à rebours
+// ------------  Compte à rebours
 let compteurInterval = null;
-const countdownDiv = document.getElementById('countdown');
-let goBtn = document.getElementById("goBtn");
+const tempusDiv = document.getElementById('tempus');
+let hourglassBtn = document.getElementById("hourglassBtn");
 let inputCountdown = document.getElementById('numberParam');
 let tempsRestant = '';
 let audioBip = new Audio("./media/bip.mp3");
@@ -32,7 +32,7 @@ let audioBuzzEnd = new Audio("./media/buzzEnd.mp3");
 let btnMute = document.getElementById('muteBtn');
 let btnUnMute = document.getElementById('unmuteBtn');
 
-goBtn.addEventListener('click', function () {
+hourglassBtn.addEventListener('click', function () {
     clearInterval(compteurInterval);
     launchCountdown();
 });
@@ -40,42 +40,119 @@ goBtn.addEventListener('click', function () {
 function launchCountdown() {
     tempsRestant = inputCountdown.value;
     compteurInterval = setInterval(() => {
-        countdownDiv.innerText = tempsRestant;
+        tempusDiv.innerText = tempsRestant;
         tempsRestant--;
         if (tempsRestant >= 5) {
-            countdownDiv.classList.add("cool");
-            countdownDiv.classList.remove("warning");
-            countdownDiv.classList.remove("danger");
+            tempusDiv.classList.add("cool");
+            tempusDiv.classList.remove("warning");
+            tempusDiv.classList.remove("danger");
         } else if (tempsRestant > 2) {
             audioBip.play();
-            countdownDiv.classList.add("warning");
-            countdownDiv.classList.remove("cool");
-            countdownDiv.classList.remove("danger");
+            tempusDiv.classList.add("warning");
+            tempusDiv.classList.remove("cool");
+            tempusDiv.classList.remove("danger");
         } else if (tempsRestant >= 0) {
             audioBip.play();
-            countdownDiv.classList.remove("cool");
-            countdownDiv.classList.remove("warning");
-            countdownDiv.classList.add("danger");
+            tempusDiv.classList.remove("cool");
+            tempusDiv.classList.remove("warning");
+            tempusDiv.classList.add("danger");
         } else if (tempsRestant < 0) {
             audioBuzzEnd.play();
             clearInterval(compteurInterval);
-            countdownDiv.innerText = "Temps écoulé !";
+            tempusDiv.innerText = "Temps écoulé !";
         }
     }, 1000);
 }
 
-// Faire une fonction ActivateSound, au clic des btn le son s'active ou pas
-// et l'un ou l'autre des btn disparait
-// s'inspirer de ce qui suit
 btnMute.addEventListener("click", function () {
     if (audioBip.muted == false) {
         audioBip.muted = true;
-        btnUnMute.classList.contains("d-none") ? btnUnMute.classList.remove("d-none") : btnUnMute.classList.add("d-none");
-        btnMute.classList.contains("d-none") ? btnMute.classList.add("d-none") : btnMute.classList.remove("d-none");
+        btnUnMute.classList.remove("d-none");
+        btnMute.classList.add("d-none");
     } else if (audioBip.muted == true) {
         audioBip.muted = false;
-        btnMute.classList.contains("d-none") ? btnMute.classList.remove("d-none") : btnMute.classList.add("d-none");
-        btnUnMute.classList.contains("d-none") ? btnUnMute.classList.add("d-none") : btnUnMute.classList.remove("d-none");
+        btnMute.classList.remove("d-none");
+        btnUnMute.classList.add("d-none");
     }
 })
 
+btnUnMute.addEventListener("click", function () {
+    if (audioBip.muted == true) {
+        audioBip.muted = false;
+        btnUnMute.classList.add("d-none");
+        btnMute.classList.remove("d-none");
+    } else if (audioBip.muted == false) {
+        audioBip.muted = true;
+        btnMute.classList.add("d-none");
+        btnUnMute.classList.remove("d-none");
+    }
+})
+
+
+// ----------------------  Chrono
+let chronoContainer = document.getElementById("chronoContainer");
+let startbtn = document.getElementById("start");
+let stopbtn = document.getElementById("stop");
+let resetbtn = document.getElementById("reset");
+let milliseconds = 0;
+let seconds = 0;
+let minutes = 0;
+let hours = 0;
+let time;
+
+function tick() {
+    milliseconds++;
+    if (milliseconds >= 10) {
+        milliseconds = 0;
+        seconds++;
+    }
+    if (seconds >= 60) {
+        seconds = 0;
+        minutes++;
+        if (minutes >= 60) {
+            minutes = 0;
+            hours++;
+        }
+    }
+}
+
+function add() {
+    tick();
+    chronoContainer.textContent = (hours > 9 ? hours : "0" + hours) 
+        + ":" + (minutes > 9 ? minutes : "0" + minutes)
+        + ":" + (seconds > 9 ? seconds : "0" + seconds)
+        + "." + (milliseconds > 9 ? milliseconds : "0" + milliseconds);
+    timer();
+}
+
+function timer() {
+    time = setTimeout(add, 100);
+}
+
+startbtn.addEventListener("click", () => {
+    startChrono();
+    startbtn.style.visibility = "hidden";
+})
+stopbtn.addEventListener("click", () => {
+    stopChrono();
+    startbtn.style.visibility = "visible";
+})
+resetbtn.addEventListener("click", () => {
+    resetChrono();
+})
+
+function startChrono() {
+    timer();
+}
+
+function stopChrono() {
+    clearTimeout(time);
+}
+
+function resetChrono() {
+    chronoContainer.textContent = "00:00:00.00";
+    seconds = 0;
+    minutes = 0;
+    hours = 0;
+    milliseconds = 0;
+}
