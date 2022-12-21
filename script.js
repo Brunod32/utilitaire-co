@@ -21,6 +21,37 @@ function showDate() {
     dateInHtml.innerText = `Nous sommes le ${localeDate[0].toUpperCase()}${localeDate.slice(1).replace("à", "et il est ")}.`;
 }
 
+// ------------  Météo
+
+const apiKey = '7d4a696f4e46055b073d599ec89e157b';
+
+// Appel à l'api openWeather avec ville en paramètre de fonction
+let apiCall = function (city) {
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=fr`;
+
+    fetch(url)
+        .then(response => response.json()
+        .then((data) => {
+            console.log(data)
+            document.querySelector('#city').innerHTML = "<i class='bi bi-geo-alt'></i> " + data.name;
+            document.querySelector('#temp').innerHTML = "<i class='bi bi-thermometer-half'></i> " + data.main.temp + '°';
+            document.querySelector('#wind').innerHTML = "<i class='bi bi-wind'></i> " + data.wind.speed + ' km/h';
+            document.querySelector('#humidity').innerHTML = "<i class='bi bi-droplet'></i> " +data.main.humidity + ' %';
+        })
+    ).catch(err => console.log('Erreur: ' + err));
+}
+
+// Ecouteur d'événement sur la soumission du formulaire
+document.querySelector('form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    let citySearch = document.querySelector('#inputCity').value;
+    apiCall(citySearch)
+});
+
+// Appel par défaut au chargement de la page
+apiCall('Combourg');
+
+
 // ------------  Compte à rebours
 let compteurInterval = null;
 const tempusDiv = document.getElementById('tempus');
