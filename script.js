@@ -33,10 +33,14 @@ let apiCall = function (city) {
         .then(response => response.json()
         .then((data) => {
             console.log(data)
-            document.querySelector('#city').innerHTML = "<i class='bi bi-geo-alt'></i> " + data.name;
-            document.querySelector('#temp').innerHTML = "<i class='bi bi-thermometer-half'></i> " + data.main.temp + '°';
-            document.querySelector('#wind').innerHTML = "<i class='bi bi-wind'></i> " + data.wind.speed + ' km/h';
-            document.querySelector('#humidity').innerHTML = "<i class='bi bi-droplet'></i> " +data.main.humidity + ' %';
+            document.querySelector('#city').innerHTML =
+                "<i class='bi bi-geo-alt'></i> " + data.name + ", le temps est " + data.weather[0].description;
+            document.querySelector('#temp').innerHTML =
+                "<i class='bi bi-thermometer-half'></i> " + data.main.temp + '°C' + ", ressenti " + data.main.feels_like + '°C';
+            document.querySelector('#wind').innerHTML =
+                "<i class='bi bi-wind'></i> " + data.wind.speed + ' km/h';
+            document.querySelector('#humidity').innerHTML =
+                "<i class='bi bi-droplet'></i> " + data.main.humidity + ' %';
         })
     ).catch(err => console.log('Erreur: ' + err));
 }
@@ -49,7 +53,7 @@ document.querySelector('form').addEventListener('submit', function (e) {
 });
 
 // Appel par défaut au chargement de la page
-apiCall('Combourg');
+apiCall('Trémeheuc');
 
 
 // ------------  Compte à rebours

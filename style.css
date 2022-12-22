@@ -14,6 +14,34 @@ h2 {
     font-size: 25px;
 }
 
+.weatherContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-weight: lighter;
+    font-size: 20px;
+}
+
+.bi-geo-alt {
+    font-size: 2em;
+}
+
+.bi-thermometer-half {
+    font-size: 2em;
+    color: red;
+}
+
+.bi-wind {
+    font-size: 2em;
+    color: grey;
+}
+
+.bi-droplet {
+    font-size: 2em;
+    color: blue;
+}
+
+
 #hourglassBtn,
 #muteBtn,
 #unmuteBtn {
@@ -31,7 +59,7 @@ h2 {
 .tempusDiv,
 #chronoContainer {
     font-weight: bolder;
-    font-size: 50px;
+    font-size: 32px;
 }
 
 #countdownParams {
@@ -49,6 +77,10 @@ label {
 .countdownBtn {
     display: flex;
     justify-content: space-around;
+}
+
+.tempusSection {
+    padding-top: 25px;
 }
 
 .tempusSectionBoxes {
@@ -106,6 +138,18 @@ label {
     /* background-color: lightgray; */
     border-radius: 25px;
     box-shadow: 2px 5px 5px lightblue;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding-top: 25px;
+    color: grey;
+}
+
+footer a {
+    text-decoration: none;
 }
 
 @media (max-width: 748px) {
