@@ -62,8 +62,8 @@ const tempusDiv = document.getElementById('tempus');
 let hourglassBtn = document.getElementById("hourglassBtn");
 let inputCountdown = document.getElementById('numberParam');
 let tempsRestant = '';
-let audioBip = new Audio("./media/bip.mp3");
-let audioBuzzEnd = new Audio("./media/buzzEnd.mp3");
+let audioBip = new Audio("./media/sounds/bip.mp3");
+let audioBuzzEnd = new Audio("./media/sounds/buzzEnd.mp3");
 let btnMute = document.getElementById('muteBtn');
 let btnUnMute = document.getElementById('unmuteBtn');
 
