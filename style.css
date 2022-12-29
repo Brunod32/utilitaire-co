@@ -41,6 +41,18 @@ h2 {
     color: blue;
 }
 
+.weatherForecastContainer {
+    display: flex;
+    justify-content: space-around;
+    gap: 5px;
+}
+
+.forecast {
+    background-color: aliceblue;
+    border-radius: 10px;
+    padding: 5px;
+    margin:20px
+}
 
 #hourglassBtn,
 #muteBtn,
@@ -153,7 +165,9 @@ footer a {
 }
 
 @media (max-width: 748px) {
-    .tempusSection {
+    .tempusSection,
+    .weatherContainer,
+    .weatherForecastContainer {
         display: flex;
         flex-direction: column;
         justify-content: center;

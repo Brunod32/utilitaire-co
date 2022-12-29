@@ -32,7 +32,7 @@ let apiCall = function (city) {
     fetch(url)
         .then(response => response.json()
         .then((data) => {
-            console.log(data)
+            // console.log(data)
             document.querySelector('#city').innerHTML =
                 "<i class='bi bi-geo-alt'></i> " + data.name + ", le temps est " + data.weather[0].description;
             document.querySelector('#temp').innerHTML =
@@ -50,10 +50,36 @@ document.querySelector('form').addEventListener('submit', function (e) {
     e.preventDefault();
     let citySearch = document.querySelector('#inputCity').value;
     apiCall(citySearch)
+    apiForecastCall(citySearch)
 });
+
+let apiForecastCall = function (city) {
+    let urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric&lang=fr`;
+
+    fetch(urlForecast)
+        .then(response => response.json()
+        .then((data) => {
+            console.log(data)
+            
+            document.querySelector('#forecast0').innerHTML =
+                data.list[0].dt_txt + "<br>" + data.list[0].weather[0].description + 
+                "<br>" + "<i class='bi bi-thermometer-half'></i>" + data.list[0].main.temp + "°C, ressenti de " + data.list[0].main.feels_like + "°C";
+            document.querySelector('#forecast1').innerHTML =
+                data.list[1].dt_txt + "<br>" + data.list[1].weather[0].description + 
+                "<br>"+ "<i class='bi bi-thermometer-half'></i>"  + data.list[1].main.temp + "°C, ressenti de " + data.list[1].main.feels_like + "°C";
+            document.querySelector('#forecast2').innerHTML =
+                data.list[2].dt_txt + "<br>" + data.list[2].weather[0].description + 
+                "<br>"+ "<i class='bi bi-thermometer-half'></i>"  + data.list[2].main.temp + "°C, ressenti de " + data.list[2].main.feels_like + "°C";
+            document.querySelector('#forecast3').innerHTML =
+                data.list[3].dt_txt + "<br>" + data.list[3].weather[0].description +
+                "<br>"+ "<i class='bi bi-thermometer-half'></i>"  + data.list[3].main.temp + "°C, ressenti de " + data.list[3].main.feels_like + "°C";
+        })
+    ).catch(err => console.log('Erreur: ' + err));
+}
 
 // Appel par défaut au chargement de la page
 apiCall('Trémeheuc');
+apiForecastCall('Trémeheuc');
 
 
 // ------------  Compte à rebours
